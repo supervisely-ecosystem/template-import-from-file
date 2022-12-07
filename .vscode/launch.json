@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Debug: local folder",
             "type": "python",
             "request": "launch",
             "program": "${file}",
@@ -13,7 +13,7 @@
             }
         },
         {
-            "name": "Advanced debug",
+            "name": "Advanced debug: team files folder",
             "type": "python",
             "request": "launch",
             "program": "${file}",
@@ -22,8 +22,6 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}:${PYTHONPATH}",
                 "ENV": "production",
-                "SLY_APP_DATA_DIR": "${workspaceFolder}/results",
-                "FILE": "/temp/my_project.txt"
             }
         },
     ]

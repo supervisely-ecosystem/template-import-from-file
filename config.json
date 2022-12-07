@@ -3,6 +3,7 @@
   "description": "Demonstrates how to make custom import supervisely app, that imports data from files",
   "categories": ["development"],
   "main_script": "src/main.py",
+  "modal_template": "src/modal.html",
   "headless": true,
   "icon": "https://user-images.githubusercontent.com/48913536/206195024-712f5cf9-cfdb-4cf4-8ee9-71cd191081c2.png",
   "poster": "https://user-images.githubusercontent.com/48913536/206195017-ef1fbbae-4102-491e-944a-aa14cb4096d8.png",

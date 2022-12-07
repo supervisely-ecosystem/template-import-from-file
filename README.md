@@ -24,7 +24,7 @@ Template app in it's current state will import images to selected project or dat
 
 Describe the type of data your app is importing e.g: images, videos, COCO, PascalVoc or any other data format.
 
-Describe an input file structure using examples.
+Explain an input file structure using examples.
 
 **Example:**
 

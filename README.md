@@ -67,7 +67,7 @@ Click `Run application` button on the right side of the app page. Modal window w
 Choose file to import in the modal window.
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/48913536/206448478-fbac83f4-9bad-4ae9-b873-d678c9c0abf5.png"/>
+  <img src="https://user-images.githubusercontent.com/48913536/206448478-fbac83f4-9bad-4ae9-b873-d678c9c0abf5.png" width=60%/>
 </div>
 
 </details>
@@ -85,7 +85,7 @@ If you want to upload your data to existing Project or Dataset run the applicati
 You can upload the file to drag-and-drop field or you can click on the drag-and-drop field and choose project from your computer in opened window.
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/48913536/206448491-7fcdd407-591b-426d-bf03-05074cc99c1d.png"/>
+  <img src="https://user-images.githubusercontent.com/48913536/206448491-7fcdd407-591b-426d-bf03-05074cc99c1d.png" width=60%/>
 </div>
 
 </details>

@@ -43,7 +43,8 @@ class MyImport(sly.app.Import):
                 sly.logger.warn("Skip image", extra={"url": img_url, "reason": repr(e)})
             finally:
                 progress.iter_done_report()
-
+        
+        # remove local file after upload
         if sly.utils.is_production():
             os.remove(context.path)
         return context.project_id

@@ -82,7 +82,7 @@ If you want to upload your data to existing Project or Dataset run the applicati
   <img src="https://user-images.githubusercontent.com/48913536/206448464-236eef87-308b-449e-991f-e7dcbd9fe53d.png"/>
 </div>
 
-You can upload the file to drag-and-drop field or you can click on the drag-and-drop field and choose project from your computer in opened window.
+You can upload the file to drag-and-drop field or you can click on the drag-and-drop field and choose file from your computer in opened window.
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/48913536/206448491-7fcdd407-591b-426d-bf03-05074cc99c1d.png" width=60%/>

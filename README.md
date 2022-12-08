@@ -57,17 +57,18 @@ App can be launched from ecosystem, project, dataset, or file in team files.
 <details>
 <summary>Run from ecosystem</summary>
 <br>
+
 Click `Run application` button on the right side of the app page. Modal window will be opened.
-  
-<img src="">
 
-1. If you want to upload project folder from your computer, choose `Drag & Drop` option. You can upload the project folder to drag-and-drop field or you can click on the drag-and-drop field and choose project from your computer in opened window.
-  
-<img src=""/>
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/48913536/206448473-a88fe24b-02fc-480c-92cd-9a9d8279e78e.png">
+</div>
 
-2. If you want to import project from Team Files, choose `Team Files` option and choose folder to import in the modal window.
-  
-<img src=""/>
+Choose file to import in the modal window.
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/48913536/206448478-fbac83f4-9bad-4ae9-b873-d678c9c0abf5.png"/>
+</div>
 
 </details>
 
@@ -75,9 +76,17 @@ Click `Run application` button on the right side of the app page. Modal window w
 <summary open>Run from Project or Dataset</summary>
 <br>
 
-Run the application from the context menu of the folder (right mouse button) on Team Files page
-  
-<img src=""/>
+If you want to upload your data to existing Project or Dataset run the application from the context menu of the Project or Dataset.
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/48913536/206448464-236eef87-308b-449e-991f-e7dcbd9fe53d.png"/>
+</div>
+
+You can upload the file to drag-and-drop field or you can click on the drag-and-drop field and choose project from your computer in opened window.
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/48913536/206448491-7fcdd407-591b-426d-bf03-05074cc99c1d.png"/>
+</div>
 
 </details>
 
@@ -85,8 +94,10 @@ Run the application from the context menu of the folder (right mouse button) on 
 <summary open>Run from team files</summary>
 <br>
 
-Run the application from the context menu of the folder (right mouse button) on Team Files page
-  
-<img src=""/>
+Run the application from the context menu of the file (right mouse button) on Team Files page
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/48913536/206448485-32cf4cc6-84dd-4615-a100-6db8ee27689e.png"/>
+</div>
 
 </details>

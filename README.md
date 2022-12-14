@@ -1,6 +1,6 @@
 <div align="center" markdown>
 
-<img src="https://user-images.githubusercontent.com/48913536/206195017-ef1fbbae-4102-491e-944a-aa14cb4096d8.png"/>
+<img src="https://user-images.githubusercontent.com/48913536/207625734-ccef5e02-911a-4ef6-b58a-d664891cc4b2.png"/>
 
 # Custom Import from File
 

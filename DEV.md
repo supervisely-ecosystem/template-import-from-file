@@ -2,24 +2,21 @@
 
 ## Introduction
 
-In this tutorial, you will learn how to create custom import app for uploading your data to Supervisely platform using an import template app that we've prepared for you.
+In this tutorial, you will learn how to create custom import app for uploading your data to Supervisely platform using an import template app that we have prepared for you.
 
 We advise reading our [from script to supervisely app](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app) guide if you are unfamiliar with the [file structure](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
 
-
 We will go through the following steps:
 
-[**Step 1.**](DEV.md#step-1.-set-up-environment-for-development) Set up an environment for development.
+[**Step 1.**](#step-1-set-up-an-environment-for-development) Set up an environment for development.
 
-[**Step 2.**](DEV.md#step-2.-how-to-debug-import-app) How to debug import app.
+[**Step 2.**](#step-2-how-to-debug-import-app) How to debug import app.
 
-[**Step 3.**](DEV.md#step-3.-how-to-write-an-import-script) How to write an import script.
+[**Step 3.**](#step-3-how-to-write-an-import-script) How to write an import script.
 
-[**Step 4.**](DEV.md#step-4.-how-to-run-it-in-supervisely) How to run it in Supervisely.
+[**Step 4.**](#step-4-how-to-run-it-in-supervisely) How to run it in Supervisely.
 
-{% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/hello-world-app): source code and additional app files.
-{% endhint %}
 
 ## Step 1. Set up an environment for development
 
@@ -44,6 +41,7 @@ code -r .
 **Step 5.** Open `local.env` and insert your values here. Learn more about environment variables in our [guide](https://developer.supervise.ly/getting-started/environment-variables)
 
 ```python
+TASK_ID=10                    # ⬅️ requires to use advanced debugging
 CONTEXT_TEAMID=1              # ⬅️ change it
 CONTEXT_WORKSPACEID=1         # ⬅️ change it
 CONTEXT_PROJECTID=555         # ⬅️ specify when importing to existing project
@@ -56,10 +54,10 @@ SLY_APP_DATA_DIR="results/"   # ⬅️ path to directory for local debugging
 
 Import template has 2 launch options for debugging:
 
-* "Debug: local file" - works with local file on your computer
-* "Advanced debug: team files file" - download file from team files
+* `Debug: local file` - works with local file on your computer
+* `Advanced debug: team files file` - download file from team files
 
-We've prepared `my_project.txt` file as a sample file. It contains 5 links to images that will be imported to the specified project and dataset.
+We've prepared `my_project.txt` as a sample file. It contains 5 links to images that will be imported to the specified project and dataset.
 
 Upload this file to `Team Files` to use with advanced debug.
 
@@ -72,6 +70,10 @@ https://github.com/supervisely-ecosystem/demo-data-for-import-template/releases/
 https://github.com/supervisely-ecosystem/demo-data-for-import-template/releases/download/images/pexels-taryn-elliott-3889728.jpg
 https://github.com/supervisely-ecosystem/demo-data-for-import-template/releases/download/images/pexels-taryn-elliott-9565787.jpg
 ```
+
+<div align="center" markdown>
+    <img src="https://user-images.githubusercontent.com/48913536/208120526-f35e4032-ad28-4f75-a614-938d29400426.png"/>
+</div>
 
 **Option 1. Debug: local file**
 
@@ -216,6 +218,8 @@ Importing to created Dataset: id=55556, name=ds0
 {"message": "progress", "event_type": "EventType.PROGRESS", "subtask": "Processing urls", "current": 5, "total": 5, "timestamp": "2022-12-15T19:08:06.085Z", "level": "info"}              
 ```
 
-## Step 5. How to run it in Supervisely.
+## Step 4. How to run it in Supervisely
 
-To add your app to Supervisely Ecosystem please follow the guie
+Submitting an app to the Supervisely Ecosystem isn’t as simple as pushing code to github repository, but it’s not as complicated as you may think of it either.
+
+Please follow this [link](https://developer.supervise.ly/app-development/basics/add-private-app) for instructions on adding your app. We have produced a step-by-step guide on how to add your application to the Supervisely Ecosystem.

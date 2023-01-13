@@ -47,6 +47,8 @@ WORKSPACE_ID=1                # ⬅️ change it
 PROJECT_ID=555                # ⬅️ specify when importing to existing project
 DATASET_ID=55555              # ⬅️ specify when importing to existing dataset
 FILE="data/my_project.txt"    # ⬅️ path to file that you want to import
+                              # don't speify path if you want to import
+                              # external file outside Supervisely Team Files
 SLY_APP_DATA_DIR="results/"   # ⬅️ path to directory for local debugging
 ```
 

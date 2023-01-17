@@ -1,9 +1,10 @@
 import os
 from shutil import unpack_archive
 
-import supervisely as sly
-from supervisely.io.fs import download, silent_remove, get_file_name_with_ext, remove_dir
 from dotenv import load_dotenv
+
+import supervisely as sly
+from supervisely.io.fs import download, get_file_name_with_ext, remove_dir, silent_remove
 
 # load ENV variables for debug, has no effect in production
 load_dotenv("local.env")
@@ -37,8 +38,10 @@ class MyImport(sly.app.Import):
 
         # get working directory path (specified in local.env)
         work_dir = sly.app.get_data_dir()
+
         # link to demo data
         link = "https://github.com/supervisely-ecosystem/template-import-from-file/releases/download/v0.0.1/demo_data.zip"
+
         # save path for data
         archive_path = os.path.join(work_dir, "demo_data.zip")
 
@@ -55,14 +58,13 @@ class MyImport(sly.app.Import):
         unpack_archive(archive_path, extract_dir=work_dir)
         silent_remove(archive_path)
 
-        # read input file, remove empty lines + leading & trailing whitespaces
+        # list images in directory and upload them to Supervisely
         images_paths = [os.path.join(work_dir, image_path) for image_path in os.listdir(work_dir)]
-
         progress = sly.Progress("Processing urls", total_cnt=len(images_paths))
         for img_path in images_paths:
             try:
                 img_name = get_file_name_with_ext(img_path)
-                # upload image into dataset on Supervisely server
+                # upload image to dataset on Supervisely server
                 info = api.image.upload_path(dataset_id, img_name, img_path)
                 sly.logger.trace(f"Image has been uploaded: id={info.id}, name={info.name}")
             except Exception as e:
@@ -72,9 +74,10 @@ class MyImport(sly.app.Import):
                 os.remove(img_path)
                 progress.iter_done_report()
 
-        # remove local file after upload
+        # remove working directory after uploading all images
         if sly.utils.is_production():
             remove_dir(work_dir)
+
         return project_id
 
 

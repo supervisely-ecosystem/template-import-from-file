@@ -136,8 +136,8 @@ It will download your file to the specified debug directory (`SLY_APP_DATA_DIR`)
 * Workspace ID - destination workspace id
 * Project ID - destination project id, if not specified, you need to write code that creates a new project using Supervisely SDK (See [Step 4](#step-4-how-to-import-file-from-url))
 * Dataset ID - destination dataset id, if not specified, you need to write code that creates a new dataset using Supervisely SDK (See [Step 4](#step-4-how-to-import-file-from-url))
-* Path: data/my_project.txt - Local path to downloaded file
-* Is directory: False - Determines if path is a directory
+* Path: `data/my_project.txt` - Local path to downloaded file
+* Is directory: `False` - Determines if path is a directory
 
  `context` variable is passed as an argument to `process` method of class `MyImport` and `context` object will be created automatically when you execute import.
 
@@ -224,15 +224,13 @@ Importing to existing Dataset: id=55555, name=ds0
 ## Step 4. How to import file from URL
 
 In some cases you may need to import files to Supervisely from the web.
-
 If that's your case - leave variable `FILE` empty in `local.env` or simply comment or remove it.
-For this example we haven't specified project and dataset ids.
 
 ```python
 FILE=                         # ⬅️ leave empty
 ```
 
-In this example we will download archive with 5 images `demo_data.zip`. You can find this file in [repostitory](https://github.com/supervisely-ecosystem/template-import-from-file)
+In this example we will download archive with 5 images `demo_data.zip` and import them to the new project. You can find this file in [repostitory](https://github.com/supervisely-ecosystem/template-import-from-file)
 
 `demo_data.zip` -  [download link](https://github.com/supervisely-ecosystem/template-import-from-file/releases/download/v0.0.1/demo_data.zip)
 
@@ -268,8 +266,7 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 
 **Step 3. Write Import script**
 
-Script for downloading and importing file from the web to Supervisely.
-It's quite the same as importing file from the Team Files except you should write a part that downloading a file from URL.
+Script for downloading and importing file from the web to Supervisely is quite the same as importing file from the Team Files except you should write a part that downloading a file from URL.
 
 Firstly override method `is_path_required` as shown below. It will tell `sly.app.Import` class that file will be imported from the web.
 
@@ -373,8 +370,8 @@ app.run()
 Output of this python program:
 
 ```text
-{"message": "Project has been successfully created: id=555, name='My Project'", "timestamp": "2023-01-16T15:55:53.704Z", "level": "info"}
-{"message": "Dataset has been successfully created: id=55555, name='ds0'", "timestamp": "2023-01-16T15:55:54.863Z", "level": "info"}
+{"message": "Project has been successfully created: id=556, name='My Project'", "timestamp": "2023-01-16T15:55:53.704Z", "level": "info"}
+{"message": "Dataset has been successfully created: id=55556, name='ds0'", "timestamp": "2023-01-16T15:55:54.863Z", "level": "info"}
 {"message": "progress", "event_type": "EventType.PROGRESS", "subtask": "Processing urls", "current": 0, "total": 5, "timestamp": "2023-01-16T15:42:05.293Z", "level": "info"}
 {"message": "progress", "event_type": "EventType.PROGRESS", "subtask": "Processing urls", "current": 1, "total": 5, "timestamp": "2023-01-16T15:44:55.744Z", "level": "info"}
 {"message": "progress", "event_type": "EventType.PROGRESS", "subtask": "Processing urls", "current": 2, "total": 5, "timestamp": "2023-01-16T15:44:59.044Z", "level": "info"}

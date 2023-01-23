@@ -1,8 +1,9 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+
 import requests
 import supervisely as sly
+from dotenv import load_dotenv
 
 # load ENV variables for debug, has no effect in production
 load_dotenv("local.env")
@@ -33,9 +34,7 @@ class MyImport(sly.app.Import):
 
                 # upload image into dataset on Supervisely server
                 info = api.image.upload_path(context.dataset_id, img_name, img_path)
-                sly.logger.trace(
-                    f"Image has been uploaded: id={info.id}, name={info.name}"
-                )
+                sly.logger.trace(f"Image has been uploaded: id={info.id}, name={info.name}")
 
                 # remove local file after upload
                 os.remove(img_path)
@@ -43,7 +42,7 @@ class MyImport(sly.app.Import):
                 sly.logger.warn("Skip image", extra={"url": img_url, "reason": repr(e)})
             finally:
                 progress.iter_done_report()
-        
+
         # remove local file after upload
         if sly.utils.is_production():
             os.remove(context.path)

@@ -48,7 +48,7 @@ TEAM_ID=1                     # ⬅️ change it
 WORKSPACE_ID=1                # ⬅️ change it
 PROJECT_ID=555                # ⬅️ specify when importing to existing project
 DATASET_ID=55555              # ⬅️ specify when importing to existing dataset
-FILE="/data/my_project.txt"    # ⬅️ path to file that you want to import (see step 4 for importing files from link)
+FILE="/data/my_project.txt"   # ⬅️ path to file that you want to import (see step 4 for importing files from link)
 SLY_APP_DATA_DIR="results/"   # ⬅️ path to directory for local debugging
 ```
 
@@ -103,6 +103,8 @@ FILE="/data/my_project.txt"    # ⬅️ change it
 <img src="https://user-images.githubusercontent.com/48913536/212913787-27479eea-ff7b-467f-8d9b-d1dad96fc48e.png"/>
 
 ## Step 3. How to write an import script
+
+You can find source code for this example [here](https://github.com/supervisely-ecosystem/template-import-from-file/blob/master/src/file_example.py)
 
 **Step 1. Import libraries**
 
@@ -212,8 +214,8 @@ app.run()
 Output of this python program:
 
 ```text
-Importing to existing Project: id=555, name=my_project
-Importing to existing Dataset: id=55555, name=ds0
+{"message": "Importing to existing Project: id=555, name=my_project", "timestamp": "2023-01-23T13:55:46.222Z", "level": "info"}
+{"message": "Importing to existing Dataset: id=55555, name=ds0", "timestamp": "2023-01-23T13:55:46.814Z", "level": "info"}
 {"message": "progress", "event_type": "EventType.PROGRESS", "subtask": "Processing urls", "current": 0, "total": 5, "timestamp": "2022-12-15T19:07:51.368Z", "level": "info"}
 {"message": "progress", "event_type": "EventType.PROGRESS", "subtask": "Processing urls", "current": 1, "total": 5, "timestamp": "2022-12-15T19:07:53.672Z", "level": "info"}
 {"message": "progress", "event_type": "EventType.PROGRESS", "subtask": "Processing urls", "current": 2, "total": 5, "timestamp": "2022-12-15T19:07:56.947Z", "level": "info"}
@@ -224,11 +226,13 @@ Importing to existing Dataset: id=55555, name=ds0
 
 ## Step 4. How to import file from URL
 
+You can find source code for this example [here](https://github.com/supervisely-ecosystem/template-import-from-file/blob/master/src/link_example.py)
+
 In some cases you may need to import files to Supervisely from the web.
-If that's your case - leave variable `FILE` empty in `local.env` or simply comment or remove it.
+If that's your case - comment or remove variable `FILE` in `local.env`.
 
 ```python
-FILE=                         # ⬅️ leave empty
+# FILE=/path/to/file.txt                         # ⬅️ comment or remove this line
 ```
 
 In this example we will download archive with 5 images `demo_data.zip` and import them to the new project. You can find this file in [repostitory](https://github.com/supervisely-ecosystem/template-import-from-file)

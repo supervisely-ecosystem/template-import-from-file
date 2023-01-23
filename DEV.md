@@ -48,10 +48,11 @@ TEAM_ID=1                     # ⬅️ change it
 WORKSPACE_ID=1                # ⬅️ change it
 PROJECT_ID=555                # ⬅️ specify when importing to existing project
 DATASET_ID=55555              # ⬅️ specify when importing to existing dataset
-FILE="data/my_project.txt"    # ⬅️ path to file that you want to import
-                              # don't speсify path if you want to import file from web
+FILE="/data/my_project.txt"    # ⬅️ path to file that you want to import (see step 4 for importing files from link)
 SLY_APP_DATA_DIR="results/"   # ⬅️ path to directory for local debugging
 ```
+
+When running the app from Supervisely platform: Project and Dataset IDs will be automatically detected depending on how do run your application.
 
 ## Step 2. How to debug import app
 
@@ -60,9 +61,9 @@ Import template has 2 launch options for debugging:
 * `Debug: local file` - works with local file on your computer
 * `Advanced debug: team files file` - download file from team files
 
-We've prepared `my_project.txt` as a sample file. It contains 5 links to images that will be imported to the specified project and dataset. If you don't specify project and dataset ids you will have to create them in the import script using [Supervisely Python SDK](https://supervisely.readthedocs.io/en/v6.69.4/)
+We've prepared `my_project.txt` as a sample file. It contains 5 links to images that will be imported to the specified project and dataset. If you don't specify project and dataset ids you will have to create them in the import script using [Supervisely Python SDK](https://supervisely.readthedocs.io/en/v6.69.4/) (see [step 4](#step-4-how-to-import-file-from-url))
 
-Upload this file to `Team Files` to use with advanced debug.
+Upload `my_project.txt` to `Team Files` to use with advanced debug.
 
 `my_project.txt`
 
@@ -90,16 +91,16 @@ FILE="data/my_project.txt"    # ⬅️ change it
 
 **Option 2. Advanced debug: team files file**
 
-The advanced debugging option is somewhat identical, however it will download files from `Team Files` instead. This option is an example how production apps work in Supervisely platform.
+The advanced debugging option is somewhat identical, however it will download files from `Team Files` instead. This option is an example of how production apps work in Supervisely platform.
 
 Specify path to your file in `local.env` - `FILE` variable.
 Notice that all paths in `Team Files` start with `/` character. To ensure that path to your file is correct, use context menu of the file -> copy path.
 
-<img src="https://user-images.githubusercontent.com/48913536/212913787-27479eea-ff7b-467f-8d9b-d1dad96fc48e.png"/>
-
 ```python
 FILE="/data/my_project.txt"    # ⬅️ change it
 ```
+
+<img src="https://user-images.githubusercontent.com/48913536/212913787-27479eea-ff7b-467f-8d9b-d1dad96fc48e.png"/>
 
 ## Step 3. How to write an import script
 
@@ -139,7 +140,7 @@ It will download your file to the specified debug directory (`SLY_APP_DATA_DIR`)
 * Path: `data/my_project.txt` - Local path to downloaded file
 * Is directory: `False` - Determines if path is a directory
 
- `context` variable is passed as an argument to `process` method of class `MyImport` and `context` object will be created automatically when you execute import.
+ `context` variable is passed as an argument to `process` method of class `MyImport` and `context` object will be created automatically when you execute import script.
 
 ```python
 class MyImport(sly.app.Import):

@@ -2,7 +2,7 @@ import os
 from shutil import unpack_archive
 
 from dotenv import load_dotenv
-
+from tqdm import tqdm
 import supervisely as sly
 from supervisely.io.fs import download, get_file_name_with_ext, remove_dir, silent_remove
 
@@ -60,19 +60,19 @@ class MyImport(sly.app.Import):
 
         # list images in directory and upload them to Supervisely
         images_paths = [os.path.join(work_dir, image_path) for image_path in os.listdir(work_dir)]
-        progress = sly.Progress("Processing urls", total_cnt=len(images_paths))
-        for img_path in images_paths:
-            try:
-                img_name = get_file_name_with_ext(img_path)
-                # upload image to dataset on Supervisely server
-                info = api.image.upload_path(dataset_id, img_name, img_path)
-                sly.logger.trace(f"Image has been uploaded: id={info.id}, name={info.name}")
-            except Exception as e:
-                sly.logger.warn("Skip image", extra={"path": img_path, "reason": repr(e)})
-            finally:
-                # remove local file after upload
-                os.remove(img_path)
-                progress.iter_done_report()
+        with tqdm(total=len(lines)) as pbar:
+            for img_path in images_paths:
+                try:
+                    img_name = get_file_name_with_ext(img_path)
+                    # upload image to dataset on Supervisely server
+                    info = api.image.upload_path(dataset_id, img_name, img_path)
+                    sly.logger.trace(f"Image has been uploaded: id={info.id}, name={info.name}")
+                    os.remove(img_path)
+                except Exception as e:
+                    sly.logger.warn("Skip image", extra={"path": img_path, "reason": repr(e)})
+                finally:
+                    # remove local file after upload
+                    pbar.update(1)
 
         # remove working directory after uploading all images
         if sly.utils.is_production():

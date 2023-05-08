@@ -16,19 +16,21 @@ class MyImport(sly.app.Import):
         # create api object to communicate with Supervisely Server
         api = sly.Api.from_env()
 
-        if context.project_id is None:
+        # get or create project
+        project_id = context.project_id
+        if project_id is None:
             project = api.project.create(
                 workspace_id=context.workspace_id, name="My Project", change_name_if_conflict=True
             )
-        else:
-            project = api.project.get_info_by_id(context.project_id)
+            project_id = project.id
 
-        if context.dataset_id is None:
+        # get or create dataset
+        dataset_id = context.dataset_id
+        if dataset_id is None:
             dataset = api.dataset.create(
-                project_id=project.id, name="ds0", change_name_if_conflict=True
+                project_id=project_id, name="ds0", change_name_if_conflict=True
             )
-        else:
-            dataset = api.dataset.get_info_by_id(context.dataset_id)
+            dataset_id = dataset.id
 
         # read input file, remove empty lines + leading & trailing whitespaces
         with open(context.path) as file:
@@ -48,7 +50,7 @@ class MyImport(sly.app.Import):
                         file.write(response.content)
 
                     # upload image into dataset on Supervisely server
-                    info = api.image.upload_path(dataset.id, img_name, img_path)
+                    info = api.image.upload_path(dataset_id, img_name, img_path)
                     sly.logger.trace(f"Image has been uploaded: id={info.id}, name={info.name}")
 
                     # remove local file after upload
@@ -61,7 +63,7 @@ class MyImport(sly.app.Import):
         # remove local file after upload
         if sly.utils.is_production():
             os.remove(context.path)
-        return context.project_id
+        return project_id
 
 
 app = MyImport()

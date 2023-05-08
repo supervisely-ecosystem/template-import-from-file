@@ -60,7 +60,7 @@ class MyImport(sly.app.Import):
 
         # list images in directory and upload them to Supervisely
         images_paths = [os.path.join(work_dir, image_path) for image_path in os.listdir(work_dir)]
-        with tqdm(total=len(lines)) as pbar:
+        with tqdm(total=len(images_paths)) as pbar:
             for img_path in images_paths:
                 try:
                     img_name = get_file_name_with_ext(img_path)

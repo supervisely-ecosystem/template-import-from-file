@@ -52,7 +52,7 @@ FILE="/data/my_project.txt"   # ⬅️ path to file that you want to import (see
 SLY_APP_DATA_DIR="results/"   # ⬅️ path to directory for local debugging
 ```
 
-When running the app from Supervisely platform: Project and Dataset IDs will be automatically detected depending on how do run your application.
+When running the app from Supervisely platform: Project and Dataset IDs will be automatically detected depending on how you run your application.
 
 ## Step 2. How to debug import app
 

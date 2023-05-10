@@ -1,10 +1,8 @@
 import os
-from shutil import unpack_archive
+import shutil
 
 import supervisely as sly
 from dotenv import load_dotenv
-from supervisely.io.fs import (download, get_file_name_with_ext, remove_dir,
-                               silent_remove)
 from tqdm import tqdm
 
 # load ENV variables for debug, has no effect in production
@@ -48,7 +46,7 @@ class MyImport(sly.app.Import):
 
         # download file from link
         try:
-            download(url=link, save_path=archive_path)
+            sly.fs.download(url=link, save_path=archive_path)
         except Exception as e:
             sly.logger.error(
                 "Couldn't download file from link", extra={"link": link, "reason": repr(e)}
@@ -56,15 +54,15 @@ class MyImport(sly.app.Import):
             raise e
 
         # unpack and remove downloaded archive
-        unpack_archive(archive_path, extract_dir=work_dir)
-        silent_remove(archive_path)
+        shutil.unpack_archive(archive_path, extract_dir=work_dir)
+        sly.fs.silent_remove(archive_path)
 
         # list images in directory and upload them to Supervisely
         images_paths = [os.path.join(work_dir, image_path) for image_path in os.listdir(work_dir)]
         with tqdm(total=len(images_paths)) as pbar:
             for img_path in images_paths:
                 try:
-                    img_name = get_file_name_with_ext(img_path)
+                    img_name = sly.fs.get_file_name_with_ext(img_path)
                     # upload image to dataset on Supervisely server
                     info = api.image.upload_path(dataset_id, img_name, img_path)
                     sly.logger.trace(f"Image has been uploaded: id={info.id}, name={info.name}")
@@ -74,10 +72,6 @@ class MyImport(sly.app.Import):
                 finally:
                     # remove local file after upload
                     pbar.update(1)
-
-        # remove working directory after uploading all images
-        if sly.utils.is_production():
-            remove_dir(work_dir)
 
         return project_id
 

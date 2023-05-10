@@ -60,9 +60,6 @@ class MyImport(sly.app.Import):
                 finally:
                     pbar.update(1)
 
-        # remove local file after upload
-        if sly.utils.is_production():
-            os.remove(context.path)
         return project_id
 
 

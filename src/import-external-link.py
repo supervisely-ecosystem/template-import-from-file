@@ -1,10 +1,11 @@
 import os
 from shutil import unpack_archive
 
-from dotenv import load_dotenv
-from tqdm import tqdm
 import supervisely as sly
-from supervisely.io.fs import download, get_file_name_with_ext, remove_dir, silent_remove
+from dotenv import load_dotenv
+from supervisely.io.fs import (download, get_file_name_with_ext, remove_dir,
+                               silent_remove)
+from tqdm import tqdm
 
 # load ENV variables for debug, has no effect in production
 load_dotenv("local.env")

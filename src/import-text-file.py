@@ -3,8 +3,8 @@ from pathlib import Path
 
 import requests
 import supervisely as sly
-from tqdm import tqdm
 from dotenv import load_dotenv
+from tqdm import tqdm
 
 # load ENV variables for debug, has no effect in production
 load_dotenv("local.env")

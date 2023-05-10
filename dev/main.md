@@ -1,12 +1,12 @@
 # Custom Import
 
-This README provides an overview of the custom import template and describes the various import scenarios it can cover. The import template is designed to facilitate the import of custom formats used by enterprise developers and engineers. It offers flexibility and ease of use in handling different import scenarios.
+This guide provides an overview of the custom import template and describes the various import scenarios it can cover. The import template is designed to speed up and simplify development of import apps.
 
 ## More details about `sly.app.Import`
 
-`sly.app.Import` class will handle export routines for you:
-
 💻 [Source code](https://github.com/supervisely/supervisely/blob/master/supervisely/app/import_template.py)
+
+`sly.app.Import` class will handle export routines for you:
 
 - ✅ Check that selected team, workspace, project or dataset exist and that you have access to it
 - ⬇️ Download your data from Supervisely platform to remote container or local hard drive if you are debugging your app
@@ -44,7 +44,7 @@ Is directory: False
 Is on agent: False
 ```
 
-if you want to download external data, you should reimplement method `is_path_required` and return `False`:
+If you want to download external data, you should reimplement method `is_path_required` and return `False`:
 
 ```python
     def is_path_required(self) -> bool:
@@ -96,12 +96,16 @@ code -r .
 **Step 5.** Open `local.env` and insert your values here. Learn more about environment variables in our [guide](../../getting-started/environment-variables.md)
 
 ```python
-TASK_ID=10                    # ⬅️ requires to use advanced debugging
-TEAM_ID=8                   # ⬅️ change it
-WORKSPACE_ID=349              # ⬅️ change it
-PROJECT_ID=18334              # ⬅️ ID of the project that you want to export
-DATASET_ID=66325              # ⬅️ ID of the dataset that you want to export (leave empty if you want to export whole project)
+TASK_ID=33572                 # ⬅️ requires to use advanced debugging, comment for local debugging
+TEAM_ID=8                     # ⬅️ change it to your team ID
+WORKSPACE_ID=349              # ⬅️ change it to your workspace ID
+PROJECT_ID=18334              # ⬅️ ID of the project where your data will be imported (optional)
+DATASET_ID=66325              # ⬅️ ID of the dataset where your data will be imported (optional)
 SLY_APP_DATA_DIR="results/"   # ⬅️ path to directory for local debugging
+
+# Specify only one of the following variables
+FILE="/data/my_file.txt"      # ⬅️ name of the file that will be imported
+# FOLDER="/data/my_folder/"   # ⬅️ name of the folder that will be imported
 ```
 
 Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
@@ -127,15 +131,16 @@ The settings for these options are configured in the `launch.json` file.
 
 ### 1 - `Debug`
 
-This option is a good starting point. In this case app will import data stored on your local drive, you should provide path to data in `local.env`.
+This option is a good starting point. In this case app will import data stored on your local drive, you should provide path to data in `local.env`. Path can be relative from project root or absolute.
 
 ```python
 FILE="data/my_project.txt"   # ⬅️ path to file that you want to import
+# FOLDER=                    # ⬅️ you can specify only one entity: file or folder  
 ```
 
 Data will be uploaded to specified project or dataset on Supervisely platform, but source folder will not be removed and task will not appear on workspace tasks page.
 
-![Debug](https://user-images.githubusercontent.com/79905215/236843626-df94117a-889c-4321-9925-2985896f6f89.gif)
+![Debug]()
 
 Output of this python program:
 
@@ -147,7 +152,14 @@ Processing: 100%|█████████████████████
 
 This option is useful for final testing and debugging. In this case, data will be downloaded from Supervisely instance Team Files and uploaded to specified project or dataset on Supervisely platform, source folder will be removed, and task will appear on workspace tasks page.
 
-![Advanced Debug](https://user-images.githubusercontent.com/79905215/236843626-df94117a-889c-4321-9925-2985896f6f89.gif)
+The path you need to specify should lead to a folder or file in Supervisely Team Files. All paths in Team Files start with the "/" symbol. You can find the path to the desired folder or file in the Team Files interface.
+
+```python
+FILE="/data/my_project.txt"   # ⬅️ path to file that you want to import
+# FOLDER="/data/my_project/   # ⬅️ you can specify only one entity: file or folder  
+```
+
+![Advanced Debug]()
 
 Output of this python program:
 

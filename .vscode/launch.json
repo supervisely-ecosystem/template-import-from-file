@@ -2,23 +2,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug: local folder",
+            "name": "Debug: local file",
             "type": "python",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": false,
             "env": {
-                "PYTHONPATH": "${workspaceFolder}:${PYTHONPATH}"
+                "PYTHONPATH": "${workspaceFolder}:${PYTHONPATH}",
+                "ENV": "development",
+
             }
         },
         {
-            "name": "Advanced debug: team files folder",
+            "name": "Advanced debug: team files file",
             "type": "python",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": false,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}:${PYTHONPATH}",
                 "ENV": "production",
